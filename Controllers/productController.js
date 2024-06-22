@@ -2,7 +2,6 @@ const Product = require("../Model/products");
 
 
 module.exports.updateProduct = async (req, res) => {
-  console.log("hello update",req.files)
   const files = req.files;
 
   let {
@@ -114,7 +113,7 @@ module.exports.addProduct = async (req, res) => {
 module.exports.getProduct = async (req, res) => {
   try {
     let product = await Product.find().sort({"sales":-1});
-    if (product !== []) {
+    if (product.length > 0) {
       return res.status(201).send(product);
     } else {
       return res.status(409).end();
